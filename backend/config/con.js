@@ -11,6 +11,20 @@ var abi =
     },
     {
         "constant": false,
+        "inputs": [
+            {
+                "name": "who",
+                "type": "address"
+            }
+        ],
+        "name": "callHeavyFunction2",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
         "inputs": [],
         "name": "depositBalanceOwner",
         "outputs": [],

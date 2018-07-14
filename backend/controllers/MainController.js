@@ -81,7 +81,7 @@ function addAddress(req,res){
 function doTransx(req,res){
   if(req.isAuthenticated){
     getjson()
-    doWeb3(req.user.address)
+    doWeb3(req.user.address,res,req.body.val)
   }else{
     res.redirect('/')
   }
@@ -106,7 +106,7 @@ function getjson(req,res){
     });
 }
 
-function doWeb3(add){
+function doWeb3(address,res,val){
   var userAdd = '';
 
   var add = '0x46076703Da25F14e3e1cAEabA6D46B9dACC4792B';
@@ -117,12 +117,12 @@ function doWeb3(add){
   // var abi = '';
   // var bytecode = '';
   var contractABI = new web3.eth.Contract(abi);
-  var contractAddress = '0x822eea21a587a6c673859322d4266a02876055b4';
+  var contractAddress = '0x47faf76142e27594f039b29a7d459f83531a1351';
  contractABI.options.address = contractAddress;
 
   // console.log(contractABI);
 
-  var data = contractABI.methods.callHeavyFunction().encodeABI();
+  var data = contractABI.methods.callHeavyFunction2(address).encodeABI();
 
   console.log(data);
   web3.eth.getTransactionCount(add).then((nonce) => {
@@ -146,12 +146,19 @@ function doWeb3(add){
     web3.eth.sendSignedTransaction('0x' + stx.toString('hex'))
       .then((tx) =>{
         console.log(tx.transactionHash)
-        res.redirect('https://ropsten.etherscan.io/tx/'+tx.transactionHash)
+	redirect(res,tx)
+//        res.redirect('https://ropsten.etherscan.io/tx/'+tx.transactionHash)
+//	res.redirect('/')
       })
       // .then((tx)=> {
       //   res.redirect('https://ropsten.etherscan.io/tx')
       // });
   })
+}
+
+function redirect(res,tx){
+	console.log("lets redirect")
+	 res.send(tx.transactionHash)
 }
 
 function createAccount(req,res){
