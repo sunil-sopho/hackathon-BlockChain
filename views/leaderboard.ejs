@@ -1,0 +1,59 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ./partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1>Rendezvous'18</h1>
+        <p>CAP Portal</p>
+
+        <% if (!user) { %>
+		  	<!-- <div style="width:500px;height:180px;background-color:#ececec;padding:80px;margin-left:22%;margin-top:9%;"> -->
+				<h2 style="font-size:40px;">Welcome! Please log in.</h2>
+				<a href="/capPortal/auth/facebook"><img src="fb-login.jpg" width="151" height="24"></a>
+			<!-- </div> -->
+		<% } else { %>
+			<h2>LeaderBoard</h2>
+			<table class="table-hover" style="font-size:20pt;">
+				<tr>
+				<% for(var i=0; i < cols.length; i++) { %>
+					<th><%= cols[i].column_name %></th>
+				<% } %>
+				</tr>
+				<% for(var i=0; i < users.length; i++) { %>
+					<tr>
+						<% for(var j=0; j < cols.length; j++) { %>
+							<!-- <td><%= users[i][cols[j].column_name] %></td> -->
+							<% if(users[i][cols[j].column_name]==0){ %>
+								<td>Not Submitted</td>
+							<% } else if(users[i][cols[j].column_name]==1){ %>
+								<td><a href="/capPortal/view_submission?user_id=<%= users[i]['user_id'] %>&task_id=<%= cols[j].column_name %>">Not Approved</a></td>
+							<% } else if(users[i][cols[j].column_name]==2){ %>
+								<td>Approved</td>
+							<% } else { %>
+								<td><%= users[i][cols[j].column_name] %></td>
+							<% } %>
+						<% } %>
+					</tr>
+				<% } %>
+			</table>
+		<% } %>
+
+    </div>
+</main>
+
+<footer>
+    <% include ./partials/footer %>
+</footer>
+
+</body>
+</html>

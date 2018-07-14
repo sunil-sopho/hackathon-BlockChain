@@ -1,0 +1,42 @@
+<!-- views/submission.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ./partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1>Rendezvous'18</h1>
+        <p>CAP Portal</p>
+
+        <% if (!user) { %>
+		  	<!-- <div style="width:500px;height:180px;background-color:#ececec;padding:80px;margin-left:22%;margin-top:9%;"> -->
+				<h2 style="font-size:40px;">Welcome! Please log in.</h2>
+				<a href="/capPortal/auth/facebook"><img src="fb-login.jpg" width="151" height="24"></a>
+			<!-- </div> -->
+		<% } else { %>
+			<!-- <h2>Hello, <%= user.displayName %>.</h2> -->
+			<h1>Task <%= task_id %> Submission</h1>
+			<form method="post" action="/capPortal/submitted" encType="multipart/form-data">
+				<input type="file" name="file" id="file">
+				<input type="hidden" name="task_id" id="task_id" value="<%= task_id %>">
+			    <button type="submit">Submit</button>
+			</form>
+		<% } %>
+
+    </div>
+</main>
+
+<footer>
+    <% include ./partials/footer %>
+</footer>
+
+</body>
+</html>

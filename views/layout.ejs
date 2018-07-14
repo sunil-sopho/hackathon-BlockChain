@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Passport-Facebook Example</title>
+	</head>
+	<body>
+		<% if (!user) { %>
+			<p>
+			<a href="/capPortal">Home</a> |
+			<a href="/capPortal/login">Log In</a>
+			</p>
+		<% } else { %>
+			<p>
+			<a href="/capPortal">Home</a> |
+			<a href="/capPortal/account">Account</a> |
+			<a href="/capPortal/logout">Log Out</a>
+			</p>
+		<% } %>
+		<%- body %>
+	</body>
+</html>
