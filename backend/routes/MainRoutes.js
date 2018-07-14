@@ -9,7 +9,8 @@ router.route('/').get(mainController.home);
 router.route('/login').get(mainController.login);
 router.route('/signup').get(mainController.signup);
 router.route('/profile').get(mainController.profile);
-router.route('/createAccount').get(mainController.createAccount);
+router.route('/createAccount').post(mainController.createAccount);
+router.route('/addAddress').post(mainController.addAddress);
 router.route('/shrey').get(mainController.doWeb3);
 // post req
 

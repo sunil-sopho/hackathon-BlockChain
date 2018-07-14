@@ -16,7 +16,8 @@ module.exports = {
     profile:profile,
     createAccount:createAccount,
     doWeb3:doWeb3,
-    getjson:getjson
+    getjson:getjson,
+    addAddress:addAddress
 }
 
 
@@ -42,24 +43,7 @@ function home(req,res){
 	});
 }
 
-function login(req,res){
-    res.render('login/login.ejs',{
-      message:""
-  });
-}
-function signup(req,res){
-    res.render('signup/signup.ejs',{
-      message:""
-  });
-}
 
-function loginPost(req,res){
-  res.redirect('/upload')
-}
-
-function signupPost(req,res){
-  res.redirect('/upload')
-}
 
 function createAddress(req,res){
   if(isAuthenticated){
@@ -93,7 +77,7 @@ function addAddress(req,res){
 function doTransx(req,res){
   if(isAuthenticated){
     getjson()
-    doWeb3(null)
+    doWeb3(req.user.address)
   }else{
     res.redirect('/')
   }
@@ -112,7 +96,8 @@ function getjson(req,res){
         values = body
       }else{}
       console.log(body)
-      // res.json(values);
+      if(res)
+      res.json(values);
     }
     });
 }
@@ -188,4 +173,24 @@ function parseIt(rawData){
    /// console.log(rawData[82263]+" "+rawData[82264]+" "+rawData[82265])
     rawData = JSON.parse(rawData);
     return rawData;
+}
+
+
+function login(req,res){
+    res.render('login/login.ejs',{
+      message:""
+  });
+}
+function signup(req,res){
+    res.render('signup/signup.ejs',{
+      message:""
+  });
+}
+
+function loginPost(req,res){
+  res.redirect('/upload')
+}
+
+function signupPost(req,res){
+  res.redirect('/upload')
 }
