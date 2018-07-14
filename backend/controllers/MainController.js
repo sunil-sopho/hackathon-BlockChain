@@ -127,7 +127,14 @@ function doWeb3(address,res,val){
   console.log(data);
   web3.eth.getTransactionCount(add).then((nonce) => {
     // web3.eth.getGasPrice().then((gasPrice) =>{
-    const gasPriceHex = web3.utils.toHex(10000000000);
+	var gasPriceHex;
+	if(val == 1)
+   gasPriceHex = web3.utils.toHex(100000000*values.safeLow);
+else if(val ==2)
+gasPriceHex = web3.utils.toHex(100000000*values.average);
+else{
+gasPriceHex = web3.utils.toHex(100000000*values.fastest);
+}
     const gasLimitHex = web3.utils.toHex(600000);
     // console.log(gasPrice)
     var transaction = {
