@@ -69,10 +69,10 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  margin-left: -140px;
-  margin-top: -200px;
-  width: 280px;
-  height: 350px;
+  margin-left: -175px;
+  margin-top: -300px;
+  width: 350px;
+  height: 500px;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 4px;
   color: white;
@@ -94,7 +94,8 @@ body {
 }
 .boxes-wrapper .userToken{
   margin-top: 20px;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  max-width: 350px;
 }
 .boxes-wrapper .login-box.loading {
   transform: rotate3d(1, 0, 0, 90deg);
@@ -350,8 +351,27 @@ body {
   }
 
 
-  button {
-    color: white;
-    background-color: #3976A6;
-    border:0;
-  }
+button {
+  background-color: #DD4B39
+}
+button:hover, button:focus {
+  background-color: #3976A6;
+}
+#logoutbutton {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.loginBtns {
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 20px;
+  width: 250px;
+  /* width: 13em;  - apply for fixed size */
+  text-align: center;
+  border: none;
+  line-height: 34px;
+  white-space: nowrap;
+  font-size: 16px;
+}

@@ -5,15 +5,7 @@
     <link rel="stylesheet" href="./../css/style.css">
   </head>
   <body><div id="fb-root"></div>
-      <div id="boxes-wrapper" class="boxes-wrapper">
-      <% if (user) { %> 
-      <form action="/logout" method="GET">
-      	<button type="submit">LOGOUT</button>
-      </form>
-      <% } %> 
-
-
-          
+      <div id="boxes-wrapper" class="boxes-wrapper">          
             <div class="error-box">
               <div class="inner-table">
                 <div class="inner-cell">
@@ -35,28 +27,28 @@
       }
       $.post('/doTransx',obj).done()
     }</script>
-          <div class="login-box"><% if (user) { %> 
+    <div class="login-box"><% if (user) { %> 
 			<div class="userProfile">
-			  <div class="name"> <%= user.name %> </div>
+			  <div class="name"> shubham shinde</div>
 			  <% if(user.address) {%>
 				<div>Wallet Address</div>
-			  	<div class="userToken"><%= user.address %> </div>	
-			  	<button id="waitbutton1" onClick="myfunk(1)" data="1">Slow <%= data.safeLowWait*65 %>s</div></button>
-			  	<button id="waitbutton2" onClick="myfunk(2)" data="1">Fast <%= data.avgWait*65 %>s</button>
-			  	<button id="waitbutton3" onClick="myfunk(3)" data="1">Fastest <%= data.fastestWait*65 %>s</button>		  
+			  	<div class="userToken">jaekltjieoavhdklbhdsjkbhdskbljdsklbhdbjkhf </div>	
+			  	<button class="loginBtn" id="waitbutton1" onClick="myfunk(1)" data="1">Slow 32523s</button>
+			  	<button class="loginBtn" id="waitbutton2" onClick="myfunk(2)" data="1">Fast 43634s</button>
+			  	<button class="loginBtn" id="waitbutton3" onClick="myfunk(3)" data="1">Fastest 4634s</button>		  
 				<% } else { %> 
 					<div class="inputether">INPUT YOUR ADDRESS</div>
 					<!-- <input id="Input Address" type="text">
 					<button id="hashSubmit">SUBMIT</button> -->
 						<form action="/addAddress" method="POST">
-						<input name="address" placeholder="add address here">
-						<button type="submit">SUBMIT</button>
+							<input class="loginBtns" name="address" placeholder="add address here"/>
+							<button class="loginBtn" type="submit">SUBMIT</button>
 						</form>
-						<div>OR</div>
+						<div style="margin-top:20px">OR</div>
 						<form action="/createAccount" method="POST">
-						<button type="submit">CREATE ACCOUNT</button>
+							<button class="loginBtn" type="submit">CREATE ACCOUNT</button>
 						</form>
-					<% } %>
+				<% } %>
 			</div>
 			<% } else { %> 
             <div class="header">
@@ -75,85 +67,18 @@
                 <!-- <input type="submit" value="Login" /> -->
                 <a href="/auth/facebook"><button class="loginBtn loginBtn--facebook">
                     Login with Facebook
-                  </button></a>
-                  
-                  <!-- <button class="loginBtn loginBtn--google">
-                    Login with Google
-                  </button> -->
-                <!-- <div>
-                  <div class="g-signin2" 
-                  data-onsuccess="onSignIn" 
-                  data-width="250"
-                  data-theme="dark"></div>
-
-                  <div class="fb-login-button" 
-                  data-max-rows="1" 
-                  data-size="large" 
-                  data-width="250"
-                  data-button-type="continue_with" 
-                  data-show-faces="false"
-                  data-auto-logout-link="false" 
-                  data-use-continue-as="false"></div>
-                </div> -->
-              <!-- </div>
-            </div>
-            <div class="footer-password">
-              <div class="question">
-                LOGIN
-              </div>
-              <div class="button back-login">
-                Back to the Login
-              </div>
-            </div> -->
-            <!-- <div class="footer-login">
-              <div class="question">
-                Did you forgot your password?
-              </div>
-              <div class="button request-password">
-                request new password
-              </div>
-            </div> -->
+                </button></a>
           </div>
-        </div>
-         <% } %> 
+				</div>
+			<% } %>
+			<% if (user) { %> 
+			<form action="/logout" method="GET">
+			 <button type="submit" class="loginBtn" id="logoutbutton">LOGOUT</button>
+			</form>
+			<% } %> 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="./../js/jquery-1.7.1.min.js"></script>
     <script src="./../js/index.js"></script>
-    <!-- <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=1495811403830728&autoLogAppEvents=1';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script> -->
-    <script>
-      // function renderButton() {
-      //   gapi.signin2.render('my-signin2', {
-      //     'scope': 'profile email',
-      //     'width': "100%",
-      //     'height': 50,
-      //     'longtitle': true,
-      //     'theme': 'dark',
-      //     'onsuccess': onSuccess,
-      //     'onfailure': onFailure
-      //   });
-      // }
-
-      function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-      };
-    </script>
   </body>
 </html>
 
