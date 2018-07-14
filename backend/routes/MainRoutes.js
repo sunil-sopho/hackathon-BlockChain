@@ -11,7 +11,7 @@ router.route('/signup').get(mainController.signup);
 router.route('/profile').get(mainController.profile);
 router.route('/createAccount').post(mainController.createAccount);
 router.route('/addAddress').post(mainController.addAddress);
-router.route('/shrey').get(mainController.doWeb3);
+router.route('/doTransx').post(mainController.doTransx);
 // post req
 
 

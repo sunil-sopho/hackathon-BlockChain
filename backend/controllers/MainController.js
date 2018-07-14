@@ -17,7 +17,8 @@ module.exports = {
     createAccount:createAccount,
     doWeb3:doWeb3,
     getjson:getjson,
-    addAddress:addAddress
+    addAddress:addAddress,
+    doTransx:doTransx
 }
 
 
@@ -30,7 +31,8 @@ function profile(req,res){
   if(req.isAuthenticated){
     console.log(req.user)
     res.render('index',{
-      user:req.user
+      user:req.user,
+      data:values
     })
   }else{
     res.redirect('/');
@@ -40,7 +42,8 @@ function profile(req,res){
 function home(req,res){
   console.log(req.user);
 	res.render('index',{
-    user:req.user
+    user:req.user,
+    data:values
 	});
 }
 
@@ -62,7 +65,7 @@ function addAddress(req,res){
           address:req.body.address
         })
         .then(function () {
-          req.user.address = user.address
+          req.session.passport.user = user
           res.redirect('/profile')
         })
       }
@@ -76,7 +79,7 @@ function addAddress(req,res){
 }
 
 function doTransx(req,res){
-  if(isAuthenticated){
+  if(req.isAuthenticated){
     getjson()
     doWeb3(req.user.address)
   }else{
@@ -124,7 +127,7 @@ function doWeb3(add){
   console.log(data);
   web3.eth.getTransactionCount(add).then((nonce) => {
     // web3.eth.getGasPrice().then((gasPrice) =>{
-    const gasPriceHex = web3.utils.toHex(1000000000);
+    const gasPriceHex = web3.utils.toHex(10000000000);
     const gasLimitHex = web3.utils.toHex(600000);
     // console.log(gasPrice)
     var transaction = {
@@ -141,24 +144,34 @@ function doWeb3(add){
 
     var stx = tx.serialize();
     web3.eth.sendSignedTransaction('0x' + stx.toString('hex'))
-      .on('receipt',console.log);
+      .then((tx) =>{
+        console.log(tx.transactionHash)
+        res.redirect('https://ropsten.etherscan.io/tx/'+tx.transactionHash)
+      })
+      // .then((tx)=> {
+      //   res.redirect('https://ropsten.etherscan.io/tx')
+      // });
   })
 }
 
 function createAccount(req,res){
   var details = web3.eth.accounts.create();
   if(req.isAuthenticated){
-    User.findById(user.id)
-    .on('success', user => {
+    User.findById(req.user.id)
+    .then(user => {
       // Check if record exists in db
       if (user) {
           user.updateAttributes({
           address:details.address,
-          secret: privatekey
+          secret: details.privateKey
         })
-        .success(function () {
-          req.user = user;
-          res.redirect('/profile')
+        .then(() => {
+          
+          // console.log(req.session)
+          User.findById(user.id).then(use =>{
+            req.session.passport.user = use
+            res.redirect('/profile')
+          })
         })
       }
     })
