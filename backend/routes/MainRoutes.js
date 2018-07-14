@@ -8,6 +8,7 @@ var app = require('../../ApplicationInstance');
 router.route('/').get(mainController.home);
 router.route('/login').get(mainController.login);
 router.route('/signup').get(mainController.signup);
+router.route('/profile').get(mainController.profile);
 
 // post req
 

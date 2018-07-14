@@ -5,10 +5,25 @@ module.exports = {
     login:login,
     signup:signup,
     loginPost:loginPost,
-    signupPost:signupPost
-
+    signupPost:signupPost,
+    profile:profile
 }
 
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/')
+}
+
+function profile(req.res){
+  if(req.isAuthenticated){
+    res.render('profile/index',{
+      user:req.user
+    })
+  }else{
+    res.redirect('/');
+  }
+}
 
 function home(req,res){
 	res.render('index.ejs',{
