@@ -3,6 +3,8 @@ const url = "http://localhost:8080/";
 (function(){
   
     // retrieve needed boxes and elements
+    var $_hashButton      = $('#hashSubmit');
+    var $_hashtextinput   = $('#hashtextinput:text');
     var $_wrapper         = $('boxes-wrapper');
     var $_loginBox        = $('.login-box');
     var $_loadingBox      = $('.loading-box');
@@ -10,6 +12,13 @@ const url = "http://localhost:8080/";
     var $_loadingBoxText  = $('.inner-cell');
     var $_errorBox        = $('.error-box');
     var $_inputSubmit     = $('.loginBtn');
+
+    $_hashButton.click(() => {
+      console.log($_hashtextinput.val())
+      _post('address', {
+        address: $_hashtextinput.val()
+      });
+    })
 
     _get("").then((data) => console.log(data))
     

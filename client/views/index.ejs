@@ -23,13 +23,24 @@
             </div>
           </div>
 
-          <% if (user) { %> 
-          <div class="userProfile">
-            <div class="name">shubham shinde</div>
-            <div class="userToken">#ldksjgdslgjjoinkkj34u8329</div>
-          </div>
-          <% } else { %> 
-          <div class="login-box">
+          
+          <div class="login-box"><% if (!user) { %> 
+			<div class="userProfile">
+			  <div class="name">Hi shubham shinde</div>
+			  <% if(false) {%>
+				<div>HASH</div>
+			  <div class="userToken">#ldksjgdslgjjoinkkj34u8329</div>			  
+				<% } else { %> 
+					<div class="inputether">INPUT YOUR HASH</div>
+					<!-- <input id="hashtextinput" type="text">
+					<button id="hashSubmit">SUBMIT</button> -->
+						<form action="/addAddress" method="POST">
+						<input name="address" placeholder="add address here">
+						<button type="submit">submit</button>
+						</form>
+					<% } %>
+			</div>
+			<% } else { %> 
             <div class="header">
               <span>Login</span>
             </div>

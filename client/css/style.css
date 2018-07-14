@@ -65,6 +65,7 @@ body {
   margin-left: 0;
 }
 .boxes-wrapper .login-box {
+  text-align: center;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -80,6 +81,20 @@ body {
   overflow: hidden;
   transform-style: preserve-3d;
   transition: all 0.3s;
+}
+.boxes-wrapper .userProfile {
+  font-size: 1.4em;
+}
+.boxes-wrapper .name {
+  padding: 40px 0;
+  text-align: center;
+  font-size: 1.8em;
+  color: #3976A6;
+  padding-top: 40px;
+}
+.boxes-wrapper .userToken{
+  margin-top: 20px;
+  font-size: 1rem;
 }
 .boxes-wrapper .login-box.loading {
   transform: rotate3d(1, 0, 0, 90deg);
