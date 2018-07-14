@@ -1,0 +1,40 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ./partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1>Rendezvous'18</h1>
+        <p>CAP Portal</p>
+
+        <% if (!user) { %> 
+		  	<!-- <div style="width:500px;height:180px;background-color:#ececec;padding:80px;margin-left:22%;margin-top:9%;"> -->
+				<h2 style="font-size:40px;">Welcome! Please log in.</h2>
+				<a href="/auth/facebook"><img src="fb-login.jpg" width="151" height="24"></a>
+			<!-- </div> -->
+		<% } else { %>
+			<h2>Hello, <%= user.displayName %>.</h2>
+			<!-- <h3>Score, <%= user.score %></h3> -->
+			<form action="screenshot" method="post">
+				<input type="hidden" name="id" value = "<%= user.id %>" >
+			</form>
+		<% } %>
+
+    </div>
+</main>
+
+<footer>
+    <% include ./partials/footer %>
+</footer>
+
+</body>
+</html>

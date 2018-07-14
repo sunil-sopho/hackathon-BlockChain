@@ -37,7 +37,7 @@ function profile(req,res){
 
 function home(req,res){
   console.log(req.user);
-	res.render('index.html',{
+	res.render('index',{
     user:req.user
 	});
 }
