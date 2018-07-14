@@ -348,3 +348,10 @@ body {
     background: #E74B37;
     background-image: linear-gradient( to right,#E74B37, black);
   }
+
+
+  button {
+    color: white;
+    background-color: #3976A6;
+    border:0;
+  }
