@@ -15,7 +15,7 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/')
 }
 
-function profile(req.res){
+function profile(req,res){
   if(req.isAuthenticated){
     res.render('profile/index',{
       user:req.user
@@ -26,7 +26,8 @@ function profile(req.res){
 }
 
 function home(req,res){
-	res.render('index.ejs',{
+  console.log(req.user);
+	res.render('index.html',{
     user:req.user
 	});
 }
