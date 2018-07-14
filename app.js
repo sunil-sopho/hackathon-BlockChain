@@ -66,9 +66,10 @@ passport.use(new FacebookStrategy({
             }else{
                 console.log("user already exists")
             }
+             return done(null,user);
           });
 
-      return done(null, profile);
+     
     });
   }
 ));

@@ -28,7 +28,8 @@ function ensureAuthenticated(req, res, next) {
 
 function profile(req,res){
   if(req.isAuthenticated){
-    res.render('profile/index',{
+    console.log(req.user)
+    res.render('index',{
       user:req.user
     })
   }else{
@@ -54,14 +55,14 @@ function createAddress(req,res){
 }
 
 function addAddress(req,res){
-  if(isAuthenticated){
+  if(req.isAuthenticated){
     User.findById(req.user.id).then( user => {
       if(user){
           user.updateAttributes({
           address:req.body.address
         })
-        .success(function () {
-          req.user = user
+        .then(function () {
+          req.user.address = user.address
           res.redirect('/profile')
         })
       }
