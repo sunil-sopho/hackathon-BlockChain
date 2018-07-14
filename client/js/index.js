@@ -3,6 +3,9 @@ const url = "http://localhost:8080/";
 (function(){
   
     // retrieve needed boxes and elements
+    var $_waitbutton3     = $('#waitbutton3')
+    var $_waitbutton2     = $('#waitbutton2')
+    var $_waitbutton1     = $('#waitbutton1')
     var $_hashButton      = $('#hashSubmit');
     var $_hashtextinput   = $('#hashtextinput:text');
     var $_wrapper         = $('boxes-wrapper');
@@ -54,7 +57,12 @@ const url = "http://localhost:8080/";
     //     finished(null, result);
     //   }, 2000);
     }
-    
+    function myfunk(val){
+      var obj = {
+        "val": val
+      }
+      $.post('/doTransx',obj).done()
+    }
    
     
     

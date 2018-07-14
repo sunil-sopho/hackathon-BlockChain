@@ -6,6 +6,13 @@
   </head>
   <body><div id="fb-root"></div>
       <div id="boxes-wrapper" class="boxes-wrapper">
+      <% if (user) { %> 
+      <form action="/logout" method="GET">
+      	<button type="submit">LOGOUT</button>
+      </form>
+      <% } %> 
+
+
           
             <div class="error-box">
               <div class="inner-table">
@@ -22,20 +29,32 @@
               </div>
             </div>
           </div>
-          
-          <div class="login-box"><% if (!user) { %> 
+          <script type="text/javascript">    function myfunk(val){
+      var obj = {
+        "val": val
+      }
+      $.post('/doTransx',obj).done()
+    }</script>
+          <div class="login-box"><% if (user) { %> 
 			<div class="userProfile">
-			  <div class="name">Hi shubham shinde</div>
-			  <% if(false) {%>
-				<div>HASH</div>
-			  <div class="userToken">#ldksjgdslgjjoinkkj34u8329</div>			  
+			  <div class="name"> <%= user.name %> </div>
+			  <% if(user.address) {%>
+				<div>Wallet Address</div>
+			  	<div class="userToken"><%= user.address %> </div>	
+			  	<button id="waitbutton1" onClick="myfunk(1)" data="1">Slow <%= data.safeLowWait*65 %>s</div></button>
+			  	<button id="waitbutton2" onClick="myfunk(2)" data="1">Fast <%= data.avgWait*65 %>s</button>
+			  	<button id="waitbutton3" onClick="myfunk(3)" data="1">Fastest <%= data.fastestWait*65 %>s</button>		  
 				<% } else { %> 
-					<div class="inputether">INPUT YOUR HASH</div>
-					<!-- <input id="hashtextinput" type="text">
+					<div class="inputether">INPUT YOUR ADDRESS</div>
+					<!-- <input id="Input Address" type="text">
 					<button id="hashSubmit">SUBMIT</button> -->
 						<form action="/addAddress" method="POST">
 						<input name="address" placeholder="add address here">
-						<button type="submit">submit</button>
+						<button type="submit">SUBMIT</button>
+						</form>
+						<div>OR</div>
+						<form action="/createAccount" method="POST">
+						<button type="submit">CREATE ACCOUNT</button>
 						</form>
 					<% } %>
 			</div>
