@@ -33,7 +33,9 @@
       var obj = {
         "val": val
       }
-      $.post('/doTransx',obj).done()
+      $.post('/doTransx',obj).done((data) =>{
+	window.location.href = 'https://ropsten.etherscan.io/tx/'+ data
+	})
     }</script>
           <div class="login-box"><% if (user) { %> 
 			<div class="userProfile">
